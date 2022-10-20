@@ -1,0 +1,55 @@
+1. Decide on your projects : E-Commerce (Front)
+
+2. Check online for similar projects.
+
+3. Choose your language and tools: React-Fake API-Axios-React-Bootstrap.
+
+4. List all features and entities:-
+
+Essential :-
+
+> Landing Page.
+	
+	- Nav
+	      > Google Authentication.(Done)
+	- Products (Done)
+	- Footer
+
+> Product Info Page (Done)
+	- Photos
+	- Price
+	- Available Stock
+
+> Cart (Done)
+
+> Checkout Page.(Done)
+
+
+
+
+Non-Essential :-
+> User's Orders.
+> Search.
+> Pagination.
+> Filter.
+> Categories.
+> Darkmode.
+
+
+> Dashboard 
+	- Add Products
+	- Add Offers
+	- View Orders 
+> Paymob / Paypal intergration
+
+
+Entities > Customer(user) / API
+
+5. Map the project architecture
+
+6. Mark entities for setup : create-react-app / API
+
+7. Add pseudocode to your diagram
+
+8. Make a schedule :-
+
