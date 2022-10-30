@@ -62,13 +62,12 @@ export default function Home() {
                 </Form.Group>
             </Form>
             <Form.Group className='w-25 m-4'>
-                <label for='select'>Sort products</label>
+                <label htmlFor='select'>Sort products</label>
                 <Form.Select
                     id='select'
                     onChange={(e) => setSortBy(e.target.value)}
                 >
                     <optgroup label='by price'>
-                        <option value='' selected></option>
                         <option value='asc'>Asc</option>
                         <option value='dec'>Dec</option>
                     </optgroup>
