@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GoogleSignIn from "./GoogleAuth";
+import GoogleAuth from "./GoogleAuth";
 import { BsPerson } from "react-icons/bs";
 import Modal from "react-bootstrap/Modal";
 
@@ -16,7 +16,7 @@ export default function User() {
 
             <Modal show={show} onHide={() => setShow(false)} centered>
                 <Modal.Body className='d-flex justify-content-center'>
-                    <GoogleSignIn />
+                    <GoogleAuth />
                 </Modal.Body>
             </Modal>
         </>

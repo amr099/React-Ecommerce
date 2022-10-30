@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
 import { BsArrowLeft } from "react-icons/bs";
@@ -98,7 +98,9 @@ export default function ProductDetails() {
                     </Col>
                 </Row>
             ) : (
-                <Spinner animation='grow' />
+                <Container className='full-view center'>
+                    <Spinner animation='grow' className='m-4' />
+                </Container>
             )}
         </>
     );

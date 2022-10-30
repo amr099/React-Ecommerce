@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./Components/Nav";
-import Products from "./Pages/Products";
+import Products from "./Pages/Home";
 import Footer from "./Components/Footer";
 import ProductDetails from "./Pages/ProductDetails";
 import Checkout from "./Pages/Checkout";

@@ -1,7 +1,25 @@
-/* Reset  */
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 * {
     margin: 0;
-    font-family: cursive;
+    font-family: "Ubuntu", cursive;
+}
+
+h1,
+h2,
+h3 {
+    color: #4a5759;
+}
+
+li {
+    list-style-type: none;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+}
+
+li:hover {
+    cursor: pointer;
+    color: #4a5759;
+    text-decoration: underline;
 }
 
 mark {
@@ -21,18 +39,10 @@ mark {
     color: #f8f7ff;
 }
 
-/* Dark */
-h1,
-h2,
-h3 {
-    color: #4a5759;
-}
-
 .sec-bg {
     background-color: #4a5759;
 }
 
-/* Ligh */
 .icon,
 footer > h3 {
     color: #dedbd2;

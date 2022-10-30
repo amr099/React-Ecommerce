@@ -1,21 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import { CartContext } from "../Context/CartContext";
-import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Placeholder from "react-bootstrap/Placeholder";
+import { Button, Form, Card, Placeholder } from "react-bootstrap";
 
-export default function Products() {
+export default function Home() {
     const [products, setProducts] = useState();
-    const { cart, setCart } = useContext(CartContext);
-    const numOfProduct = Array.from(Array(30).keys());
-
     useEffect(() => {
         axios
             .get("https://dummyjson.com/products")
             .then((response) => {
+                setQ(response.data.products);
                 setProducts(response.data.products);
             })
             .catch((e) => {
@@ -23,12 +19,83 @@ export default function Products() {
             });
     }, []);
 
+    const { cart, setCart } = useContext(CartContext);
+    const addToCart = (product) => {
+        setCart([
+            {
+                id: product.id,
+                title: product.title,
+                description: product.description,
+                image: product.thumbnail,
+                price: product.price,
+            },
+            ...cart,
+        ]);
+    };
+
+    const [q, setQ] = useState();
+    const search = (e) => {
+        e.preventDefault();
+        let param = e.target[0].value;
+        setQ(products.filter((product) => product.title.includes(param)));
+    };
+
+    const selectCategory = (cat) => {
+        setQ(products.filter((product) => product.category.match(cat)));
+    };
+
+    const [sortBy, setSortBy] = useState("");
+    const order = (a, b) => {
+        if (sortBy === "asc") return a.price - b.price;
+        else if (sortBy === "dec") return b.price - a.price;
+        else return;
+    };
+
     return (
         <>
+            <Form onSubmit={search}>
+                <Form.Group className='d-flex flex-row my-4 mx-auto w-25 '>
+                    <Form.Control />
+                    <Button variant='primary' type='submit' className='mx-1'>
+                        Search
+                    </Button>
+                </Form.Group>
+            </Form>
+            <Form.Group className='w-25 m-4'>
+                <label for='select'>Sort products</label>
+                <Form.Select
+                    id='select'
+                    onChange={(e) => setSortBy(e.target.value)}
+                >
+                    <optgroup label='by price'>
+                        <option value='' selected></option>
+                        <option value='asc'>Asc</option>
+                        <option value='dec'>Dec</option>
+                    </optgroup>
+                </Form.Select>
+            </Form.Group>
+            <div>
+                <ul className='d-flex flex-row flex-wrap justify-content-around mb-4'>
+                    <li onClick={() => selectCategory("smartphones")}>
+                        Smartphones
+                    </li>
+                    <li onClick={() => selectCategory("laptops")}>Laptops</li>
+                    <li onClick={() => selectCategory("fragrances")}>
+                        Fragrances
+                    </li>
+                    <li onClick={() => selectCategory("skincare")}>Skincare</li>
+                    <li onClick={() => selectCategory("groceries")}>
+                        Groceries
+                    </li>
+                    <li onClick={() => selectCategory("home-decoration")}>
+                        Home Decoration
+                    </li>
+                </ul>
+            </div>
             <div className='d-flex flex-wrap justify-content-around p-4 base-bg '>
                 {products ? (
                     <>
-                        {products?.map((product) => (
+                        {q.sort(order).map((product) => (
                             <Card
                                 style={{ width: "18rem" }}
                                 className='m-4'
@@ -52,19 +119,7 @@ export default function Products() {
                                     <Button
                                         className='mx-4'
                                         variant='success'
-                                        onClick={() => {
-                                            setCart([
-                                                {
-                                                    id: product.id,
-                                                    title: product.title,
-                                                    description:
-                                                        product.description,
-                                                    image: product.image,
-                                                    price: product.price,
-                                                },
-                                                ...cart,
-                                            ]);
-                                        }}
+                                        onClick={() => addToCart(product)}
                                     >
                                         Add to Cart
                                     </Button>
@@ -83,7 +138,7 @@ export default function Products() {
                     </>
                 ) : (
                     <>
-                        {numOfProduct.map((i) => (
+                        {Array.from(Array(30).keys()).map((i) => (
                             <Card
                                 style={{ width: "18rem" }}
                                 className='m-4'

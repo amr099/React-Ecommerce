@@ -28,11 +28,11 @@ Essential :-
 
 
 Non-Essential :-
-> User's Orders.
-> Search.
+> User's Orders. (needs DB)
+> Search. (Done)
 > Pagination.
 > Filter.
-> Categories.
+> Categories.(Done)
 > Darkmode.
 
 

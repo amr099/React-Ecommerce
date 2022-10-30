@@ -29,7 +29,6 @@ export default function GoogleAuth() {
                     onSuccess={(res) => setUser(res.profileObj)}
                     onFailure={(error) => console.log(error)}
                     cookiePolicy={"single_host_origin"}
-                    // onClick={() => setUser(true)}
                     isSignedIn={true}
                 />
             ) : (
